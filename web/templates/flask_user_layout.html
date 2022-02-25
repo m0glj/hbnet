@@ -75,11 +75,28 @@
     <li class="nav-item">
         <a class="nav-link" href="{{url}}/news"><i class="bi bi-newspaper"></i> News </a>
       </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="help_menu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           <i class="bi bi-question-square"></i> Help 
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="help_menu">
+    {% if global_config['mode'] == 'FULL' or global_config['mode'] == 'DMR_ONLY' %}
+            <li><a class="dropdown-item" href="{{url}}/help"><i class="bi bi-question-diamond"></i> General Help </a></li>
+    {% endif %}
+    {% if global_config['mode'] == 'FULL' or global_config['mode'] == 'DASH_ONLY' %}
+            <li><a class="dropdown-item" href="{{url}}/data_help"><i class="bi bi-file-bar-graph"></i> Data Help </a></li>
+    {% endif %}
+          </ul>
+        </li>
+
+    <!--
     <li class="nav-item">
         <a class="nav-link" href="{{url}}/help"><i class="bi bi-question-square"></i> Help </a>
       </li>
+      -->
+
     </ul>
-  
 
         <ul class="navbar-nav">
     {% if not call_or_get(current_user.is_authenticated) %}

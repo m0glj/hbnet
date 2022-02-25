@@ -1,0 +1,142 @@
+{% extends 'flask_user/_public_base.html' %}
+{% block content %}
+
+<h2 style="text-align: center;">Attention:</h2>
+<p><span style="color: #ff0000;"><strong>Please be aware that many (if not all) DMR radios DO NOT transmit your callsign when sending a GPS position. It is your responsibility to identify your station per the regulations of your country.</strong></span></p>
+<p>&nbsp;</p>
+<h2 style="text-align: center;"><strong>APRS/GPS</strong></h2>
+<p>When a position is received by this gateway, it will extract the coordinates and create an APRS position packet. This gateway will find your callsign based your radio's DMR ID. It is essential to have your information up to date with <a href="https://radioid.net/">RadioID.net</a>. A default APRS SSID is appended your callsign. The APRS location packet is then uploaded to APRS-IS. No setup or account creation is required beforehand.</p>
+<p>You can change the default APRS settings for your radio via SMS. If you have an account, you may also change your APRS settings by navigating to <strong>Settings &gt; APRS Settings</strong>.</p>
+<h4 style="text-align: center;">APRS Commands</h4>
+<table data-toggle="table" data-pagination="false">
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>*COM</strong></td>
+<td>Change comment text of APRS position.</td>
+<td><em><code>*COM This is a test comment.</code></em></td>
+</tr>
+<tr>
+<td><strong>*SSID</strong></td>
+<td>Change the SSID of APRS position.</td>
+<td><em><code>*SSID 7</code></em></td>
+</tr>
+<tr>
+<td><strong>*ICON</strong></td>
+<td>Change the icon of APRS position. See <a href="http://aprs.net/vm/DOS/SYMBOLS.HTM" rel="nofollow">http://aprs.net/vm/DOS/SYMBOLS.HTM</a> for icon list.</td>
+<td><em><code>*ICON /p</code></em></td>
+</tr>
+<tr>
+<td><strong>*PIN</strong></td>
+<td>Set a PIN number.</td>
+<td><em><code>*PIN 1234</code></em></td>
+</tr>
+<tr>
+<td><strong>*APRS ON</strong></td>
+<td>Enable receiving of APRS messages.</td>
+<td><em><code>*APRS ON</code></em></td>
+</tr>
+<tr>
+<td><strong>*APRS OFF</strong></td>
+<td>Disable receiving APRS messages.</td>
+<td><em><code>*APRS OFF</code></em></td>
+</tr>
+<tr>
+<td><strong>*MH</strong></td>
+<td>Send APRS position using maidenhead grid square.</td>
+<td><em><code>*DM97xu</code></em></td>
+</tr>
+<tr>
+<td><strong>@[Callsign/SSID] [Message]</strong></td>
+<td>Send an APRS message.</td>
+<td><em><code>@WXBOT current</code></em></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h2 style="text-align: center;"><strong>Tiny Pages</strong></h2>
+<p>Tiny Pages are statically retrievable pieces of information. A tiny page can be created and changed by a user in the web service. A tiny page can be retrieved via SMS with a simple command. Potential uses include help messages, net schedule messages, or whatever you can think of.</p>
+
+<h4 style="text-align: center;">Tiny Page Commands</h4>
+<table data-toggle="table" data-pagination="false">
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>?[Tiny Page Name]</strong></td>
+<td>Retrieve specific tiny page.</td>
+<td><em><code>?HELP</code></em></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+
+<h2 style="text-align: center;"><strong>Bulletin Board<br /></strong></h2>
+<p>The bulletin board is a tool that can be used for several purposes, including to see if your radio's SMS format is compatable with the data gateway. If the gateway can decode your radio's SMS, it will be posted here.</p>
+<h4 style="text-align: center;">Bulletin Board Commands</h4>
+<table data-toggle="table" data-pagination="false">
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>*BB</strong></td>
+<td>Post to the bulletin board.</td>
+<td><em><code>*BB This is a test.</code></em></td>
+</tr>
+<tr>
+<td><strong>*RBB</strong></td>
+<td>Retrieve the last 3 posts via SMS.</td>
+<td><em><code>*RBB</code></em></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h2 style="text-align: center;"><strong>Social Status</strong></h2>
+<p>Social Status is an attempt to create a social media like service that can be used via SMS. Users can post to Social Status. Posts can be viewed on the dashboard, or retrieved via SMS.</p>
+<h4 style="text-align: center;">Social Status Commands</h4>
+<table data-toggle="table" data-pagination="false">
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>*SS</strong></td>
+<td>Post a message to social status..</td>
+<td><em><code>*SS testing 123</code></em></td>
+</tr>
+<tr>
+<td><strong>*RSS [DMR ID]</strong></td>
+<td>Retrieve last post of specific DMR ID.</td>
+<td><em><code>*RSS 1234567</code></em></td>
+</tr>
+<tr>
+<td><strong>*RSS [Callsign]</strong></td>
+<td>Retrieve last post of specific user via callsign.</td>
+<td><em><code>*RSS N0CALL</code></em></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+
+
+{% endblock %}
