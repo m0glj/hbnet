@@ -1,6 +1,6 @@
 configparser>=3.0.0
 flask
-flask_user
+flask_user==1.0.2.2
 flask_sqlalchemy
 email_validator
 flask_babelex

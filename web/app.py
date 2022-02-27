@@ -1106,9 +1106,11 @@ def hbnet_web_service():
                 content = content + '''
         <div class="card">
   <div class="card-header" style="text-align: center;"><h4>ID: ''' + str(i[0]) + '''</h4></div>
-  <div class="card-body"><pre>rpi-rw; wget -O /root/auto_pistar.py "<a href="''' + str(url) + '/get_script?dmr_id=' + str(i[0]) + '&number=' + str(link_num) + '''">''' + str(url) + '/get_script?dmr_id=' + str(i[0]) + '&number=' + str(link_num) + '''</a>"; chmod +x /root/auto_pistar.py; python3 /root/auto_pistar.py; pistar-update</pre></div>
+  <div class="card-body"><pre>cd /root; rpi-rw; curl "<a href="''' + str(url) + '/get_script?dmr_id=' + str(i[0]) + '&number=' + str(link_num) + '''">''' + str(url) + '/get_script?dmr_id=' + str(i[0]) + '&number=' + str(link_num) + '''</a>" >> DMR_Hosts.txt; pistar-update</pre></div>
 </div>
     '''
+#   <div class="card-body"><pre>rpi-rw; wget -O /root/auto_pistar.py "<a href="''' + str(url) + '/get_script?dmr_id=' + str(i[0]) + '&number=' + str(link_num) + '''">''' + str(url) + '/get_script?dmr_id=' + str(i[0]) + '&number=' + str(link_num) + '''</a>"; chmod +x /root/auto_pistar.py; python3 /root/auto_pistar.py; pistar-update</pre></div>
+
                 #else:
                 #    content = content + '''\n<p style="text-align: center;">Error</p>'''
             
@@ -7185,7 +7187,6 @@ Name: <strong>''' + p.name + '''</strong>&nbsp; -&nbsp; Port: <strong>''' + str(
     @app.route('/api/<user>/<key>', methods=['POST'])
     def api_endpoint(user, key):
         api_data = request.json
-        print(api_data)
         try:
             u = User.query.filter(User.username == user).first()
             if key in u.api_keys:
